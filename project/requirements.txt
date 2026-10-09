@@ -1,0 +1,5 @@
+numpy
+matplotlib
+# E8(kcbert_fill.py)만 필요
+torch
+transformers

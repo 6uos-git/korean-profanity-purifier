@@ -1,0 +1,39 @@
+[E8] KcBERT 불러오는 중 (처음엔 내려받기)...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 31901.85it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: beomi/kcbert-base
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+[생성 평가 쌍 200개]  (FL은 교재 RNNLM 기준이라 E4에 유리할 수 있음)
+  E4 RNNLM 후보 선택           STA 0.930  SIM 0.853  FL 0.849  J 0.779  EM 0.730  과교정 0.000  | 2ms/문장
+  E8 KcBERT Mask-and-Fill  STA 0.930  SIM 0.714  FL 0.548  J 0.497  EM 0.440  과교정 0.286  | 35ms/문장
+
+[손으로 쓴 문장 25개]  (FL은 교재 RNNLM 기준이라 E4에 유리할 수 있음)
+  E4 RNNLM 후보 선택           STA 0.920  SIM 0.836  FL 0.936  J 0.766  EM 0.640  과교정 0.000  | 2ms/문장
+  E8 KcBERT Mask-and-Fill  STA 0.960  SIM 0.526  FL 0.470  J 0.301  EM 0.200  과교정 0.200  | 33ms/문장
+
+  KcBERT 안전장치 작동 횟수: {'차단': 744, '재검증 탈락': 49, '전부 실패': 4}
+
+[예시]
+  시1발 오늘 존나 덥네           | E4 오늘 정말 덥네             | E8 와 오늘 날씨 덥네
+  그 새끼 진짜 개빡치게 하네        | E4 그 사람 진짜 화나게 하네       | E8 그 입 진짜 가지가지 하네
+  ㅈㄴ 맛있다                 | E4 정말 맛있다               | E8 너무 맛있다
+  개가 너무 귀엽다              | E4 개가 너무 귀엽다            | E8 개가 너무 귀엽다
+  시험이 쫀나 덥네              | E4 시험이 정말 덥네            | E8 시험이 너무 덥네
+  날씨가 개 길다               | E4 날씨가 너무 길다            | E8 날씨가 너무 길다
+  오늘 졸라 덥네               | E4 오늘 정말 덥네             | E8 오늘 날씨 덥네
+  수업이 끝났다                | E4 수업이 끝났다              | E8 수업이 아니라다
+  ㅅㅂ 과제 존나 많아            | E4 아 과제 너무 많아           | E8 요즘 과제 너무 많아
+  저 ㅅㄲ 왜 저래              | E4 저 사람 왜 저래            | E8 저 여자는 왜 저래
+  배송이 존1나 느리다            | E4 배송이 너무 느리다           | E8 요즘송이 너무 느리다
+  씨발 버스 또 늦네             | E4 바보같이 버스 너무 늦네        | E8 서울 버스 너무 늦네
+
+총 소요 32초

@@ -1,0 +1,7 @@
+__pycache__/
+.DS_Store
+*.pkl
+*.npy
+dataset/ptb.*.txt
+project/.venv/
+project/data/

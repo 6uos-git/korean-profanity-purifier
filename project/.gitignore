@@ -1,0 +1,5 @@
+# 원본 데이터셋은 라이선스상 재배포하지 않음 (UnSmile CC BY-NC-ND 등) → 각 저장소에서 직접 clone
+data/
+.venv/
+saved/*.pkl
+__pycache__/
